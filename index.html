@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WOB Editorial pageview KPI tracker</title>
+    <title>WOB Editorial Pageview KPI Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Comic+Neue:wght@400;700&display=swap');
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000000;
+            background-color: #f1f5f9;
             color: #334155;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
+            flex-direction: column; /* Allows vertical stacking on mobile */
         }
 
         .container {
@@ -28,11 +29,21 @@
             padding: 2.5rem;
         }
 
+        /* Mobile-first layout for progress items */
         .progress-item-container {
             display: flex;
+            flex-direction: column; /* Stacks items vertically by default */
             align-items: center;
             gap: 1.5rem;
             margin-bottom: 2rem;
+        }
+        
+        /* Desktop layout for progress items */
+        @media (min-width: 640px) {
+            .progress-item-container {
+                flex-direction: row; /* Switches to horizontal on larger screens */
+                align-items: center;
+            }
         }
 
         .progress-content-wrapper {
@@ -40,6 +51,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            width: 100%; /* Ensures the wrapper takes full width on mobile */
         }
 
         .stick-figure-avatar {
@@ -129,12 +141,17 @@
         /* Text bubble styles */
         .message-bubble {
             position: relative;
-            background-color: #E9D5FF; /* Soft purple color */
+            background-color: #ede9fe; /* Pastel purple */
             padding: 1rem;
             border-radius: 1rem;
             margin-top: 1rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             max-width: 80%; /* Makes the bubble shorter than the progress bar */
+        }
+        
+        .message-bubble p {
+            font-family: 'Comic Neue', sans-serif;
+            font-weight: bold; /* Bolds the text inside the message bubble */
         }
 
         .message-bubble::before {
@@ -145,7 +162,7 @@
             transform: translateX(-10px); /* Adjusts position slightly */
             border-width: 0 10px 10px 10px;
             border-style: solid;
-            border-color: transparent transparent #E9D5FF transparent; /* Soft purple pointer */
+            border-color: transparent transparent #ede9fe transparent; /* Pastel purple pointer */
         }
     </style>
 </head>
@@ -160,9 +177,9 @@
 
 <script>
     const data = [
-        { name: 'Azri', pageview: 1100000, julyPageview: 675920, augustPageview: 1089746, septemberPageview: 82767 },
-        { name: 'Renu', pageview: 850000, julyPageview: 284807, augustPageview: 453898, septemberPageview: 115307 },
-        { name: 'Didi', pageview: 600000, julyPageview: 394760, augustPageview: 347769, septemberPageview: 91195 }
+        { name: 'Azri', pageview: 1100000, julyPageview: 675920, augustPageview: 1089746, septemberPageview: 82772 },
+        { name: 'Renu', pageview: 850000, julyPageview: 284807, augustPageview: 453898, septemberPageview: 115400 },
+        { name: 'Didi', pageview: 600000, julyPageview: 394760, augustPageview: 347769, septemberPageview: 91308 }
     ];
 
     function getProgressColor(progress) {
@@ -200,21 +217,21 @@
             if (progress >= 90) {
                 return "Steady lah, Azri! Pageviews padu giler bossku. Onz! 🎉";
             } else if (progress >= 50) {
-                return "Nice one, Azri! You're halfway there, takdehal punya. Keep it up! 👏";
+                return "Nice one, Azri! You're halfway there, takdehal lahhh. Keep it up! 👏";
             } else {
-                return "Sabar, Azri. Journey tu masih jauh. We got this! 🚀";
+                return "Chill lahh, Azri. Journey tu masih jauh. We got this! 🚀";
             }
         } else if (name === 'Renu') {
             if (progress >= 90) {
                 return "Cun giler, Renu! Your content is onz fire. Next level! 🔥";
             } else if (progress >= 50) {
-                return "Solid, Renu! Almost there. Jom, push lagi sikit. 💪";
+                return "Solid, Renu! Almost there. Onzzz, push lagi sikit. 💪";
             } else {
                 return "Takpe, Renu. Slow and steady. Tak kalut. We'll get there! ✨";
             }
         } else if (name === 'Didi') {
             if (progress >= 90) {
-                return "Fuyoh, Didi! Your pageviews so high, just like your spirits. Padu! 🤩";
+                return "Fuyoh, Didi! Your pageviews so high, just like your spirit. Padu! 🤩";
             } else if (progress >= 50) {
                 return "Mantap, Didi! More than half the way. Let's go! 💃";
             } else {
