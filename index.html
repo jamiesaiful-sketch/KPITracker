@@ -11,14 +11,14 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000000;
+            background-color: #f1f5f9;
             color: #334155;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
-            flex-direction: column; /* Allows vertical stacking on mobile */
+            flex-direction: column;
         }
 
         .container {
@@ -33,7 +33,7 @@
         /* Mobile-first layout for progress items */
         .progress-item-container {
             display: flex;
-            flex-direction: column; /* Stacks items vertically by default */
+            flex-direction: column;
             align-items: center;
             gap: 1.5rem;
             margin-bottom: 2rem;
@@ -42,7 +42,7 @@
         /* Desktop layout for progress items */
         @media (min-width: 640px) {
             .progress-item-container {
-                flex-direction: row; /* Switches to horizontal on larger screens */
+                flex-direction: row;
                 align-items: center;
             }
         }
@@ -52,7 +52,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            width: 100%; /* Ensures the wrapper takes full width on mobile */
+            width: 100%;
         }
 
         .stick-figure-avatar {
@@ -101,8 +101,8 @@
             width: 100%;
             height: 2rem;
             background-color: #e2e8f0;
-            border-radius: 9999px; /* This makes it fully rounded */
-            overflow: hidden; /* Ensures the fill stays within the container */
+            border-radius: 9999px;
+            overflow: hidden;
             border: 2px solid #cbd5e0;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -110,7 +110,7 @@
         .progress-bar-fill {
             height: 100%;
             border-radius: 9999px;
-            transition: width 1s ease-in-out; /* Smooth transition for the fill animation */
+            transition: width 1s ease-in-out;
             background-image: linear-gradient(to right, #4c51bf, #434190);
         }
 
@@ -142,28 +142,28 @@
         /* Text bubble styles */
         .message-bubble {
             position: relative;
-            background-color: #ede9fe; /* Pastel purple */
+            background-color: #ede9fe;
             padding: 1rem;
             border-radius: 1rem;
             margin-top: 1rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            max-width: 80%; /* Makes the bubble shorter than the progress bar */
+            max-width: 80%;
         }
         
         .message-bubble p {
             font-family: 'Comic Neue', sans-serif;
-            font-weight: bold; /* Bolds the text inside the message bubble */
+            font-weight: bold;
         }
 
         .message-bubble::before {
             content: '';
             position: absolute;
             top: -10px;
-            left: 20%; /* Puts the pointer on the left side */
-            transform: translateX(-10px); /* Adjusts position slightly */
+            left: 20%;
+            transform: translateX(-10px);
             border-width: 0 10px 10px 10px;
             border-style: solid;
-            border-color: transparent transparent #ede9fe transparent; /* Pastel purple pointer */
+            border-color: transparent transparent #ede9fe transparent;
         }
 
         /* Collapsible section styles */
@@ -171,18 +171,18 @@
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
             max-height: 0;
-            padding: 0 1rem; /* Adjust padding for open/closed state */
+            padding: 0 1rem;
             border-radius: 0.5rem;
             font-size: 0.875rem;
             color: #4a5568;
-            background-color: #f4e6f9; /* New light purple background */
+            background-color: #f4e6f9;
             box-shadow: none;
             border: none;
         }
 
         .collapsible-container.open {
-            max-height: 500px; /* A value large enough to show content */
-            padding: 0.75rem 1rem; /* Updated padding */
+            max-height: 1000px;
+            padding: 0.75rem 1rem;
         }
         
         .toggle-btn {
@@ -191,7 +191,7 @@
             padding: 0.5rem 1rem;
             border: none;
             cursor: pointer;
-            font-size: 0.875rem; /* Reduced font size to fit the button */
+            font-size: 0.875rem;
             font-weight: 600;
             border-radius: 9999px;
             margin-top: 0.5rem;
@@ -233,6 +233,12 @@
             text-align: center;
             gap: 0.5rem;
             padding: 1rem 0;
+        }
+        
+        .evolution-section + .evolution-section {
+            border-top: 1px dashed #c0a1de;
+            margin-top: 1rem;
+            padding-top: 1rem;
         }
 
         .evolution-container {
@@ -308,9 +314,10 @@
 
 <script>
     const data = [
-        { name: 'Azri', pageview: 1100000, julyPageview: 675920, augustPageview: 1089746, septemberPageview: 102909, augustWeek1Pageview: 119602, septemberWeek1Pageview: 78534 },
-        { name: 'Renu', pageview: 850000, julyPageview: 284807, augustPageview: 453898, septemberPageview: 200153, augustWeek1Pageview: 94927, septemberWeek1Pageview: 92364 },
-        { name: 'Didi', pageview: 600000, julyPageview: 394760, augustPageview: 347769, septemberPageview: 157514, augustWeek1Pageview: 89901, septemberWeek1Pageview: 64408 }
+        // Updated data with Week 2 pageviews
+        { name: 'Azri', pageview: 1100000, julyPageview: 675920, augustPageview: 1089746, septemberPageview: 103000, augustWeek1Pageview: 119602, septemberWeek1Pageview: 78534, augustWeek2Pageview: 126053, septemberWeek2Pageview: 15305 },
+        { name: 'Renu', pageview: 850000, julyPageview: 284807, augustPageview: 453898, septemberPageview: 200206, augustWeek1Pageview: 94927, septemberWeek1Pageview: 92364, augustWeek2Pageview: 124129, septemberWeek2Pageview: 102009 },
+        { name: 'Didi', pageview: 600000, julyPageview: 394760, augustPageview: 347769, septemberPageview: 157616, augustWeek1Pageview: 89901, septemberWeek1Pageview: 64408, augustWeek2Pageview: 65505, septemberWeek2Pageview: 87312 }
     ];
 
     function getProgressColor(progress) {
@@ -415,6 +422,49 @@
         }
     }
 
+    function createEvolutionSection(augustViews, septemberViews) {
+        const change = ((septemberViews - augustViews) / augustViews) * 100;
+        const roundedChange = change.toFixed(2);
+
+        let initialIcon = '😐';
+        let finalIcon;
+        let evolutionText;
+        let statusClass;
+
+        if (change >= 0) {
+            finalIcon = '😁';
+            evolutionText = `Fuh, mantap giler! Stats dorang naik padu!`;
+            statusClass = 'status-positive';
+        } else if (change > -5) {
+            finalIcon = '😬';
+            evolutionText = `Takde hal, steady je! Sikit je tu, kita push lagi!`;
+            statusClass = 'status-stable';
+        } else {
+            finalIcon = '😥';
+            evolutionText = `Alamak, tak onz ni! Kena grind lagi ni, guys!`;
+            statusClass = 'status-negative';
+        }
+
+        return `
+            <div class="evolution-section">
+                <div class="flex justify-between w-full mb-4">
+                    <span class="text-sm font-comic">August: <b>${augustViews.toLocaleString()}</b></span>
+                    <span class="text-sm font-comic">September: <b>${septemberViews.toLocaleString()}</b></span>
+                </div>
+                <div class="percentage-diff ${change > 0 ? 'text-green-500' : 'text-red-500'} font-bold">
+                    ${change > 0 ? '+' : ''}${roundedChange}%
+                </div>
+                <div class="evolution-container">
+                    <span class="evolution-icon">${initialIcon}</span>
+                    <span class="text-2xl font-bold mx-2">→</span>
+                    <span class="evolution-icon">${finalIcon}</span>
+                </div>
+                <span class="evolution-status ${statusClass}">${change > 0 ? 'Evolution' : (change > -5 ? 'Stable' : 'Devolution')}</span>
+                <p class="evolution-text text-gray-700 mt-2">${evolutionText}</p>
+            </div>
+        `;
+    }
+
     function renderProgressBar(item) {
         // Calculate the progress based on current pageview (September)
         const progress = (item.septemberPageview / item.pageview) * 100;
@@ -463,72 +513,38 @@
         messageBubble.appendChild(messageDiv);
         progressContentWrapper.appendChild(messageBubble);
 
-        // Collapsible section for August views
-        const collapsibleToggle = document.createElement('button');
-        collapsibleToggle.className = 'toggle-btn mt-4';
-        collapsibleToggle.innerHTML = `
+        // --- Combined Collapsible Section for both weeks ---
+        const combinedToggle = document.createElement('button');
+        combinedToggle.className = 'toggle-btn mt-4';
+        combinedToggle.innerHTML = `
             <span class="mr-2">Performance vs August</span>
             <svg class="arrow w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
         `;
-        progressContentWrapper.appendChild(collapsibleToggle);
-
-        const collapsibleContent = document.createElement('div');
-        collapsibleContent.className = 'collapsible-container';
+        progressContentWrapper.appendChild(combinedToggle);
         
-        // Dynamic content for the collapsible section
-        const evolutionSection = document.createElement('div');
-        evolutionSection.className = 'evolution-section';
-
-        let initialIcon = '😐'; // Neutral emoji for August starting point
-        let finalIcon;
-        let evolutionText;
-        let statusClass;
-
-        const change = ((item.septemberWeek1Pageview - item.augustWeek1Pageview) / item.augustWeek1Pageview) * 100;
-        const roundedChange = change.toFixed(2);
-
-        if (change >= 0) {
-            finalIcon = '😁'; // Happy emoji for positive change
-            evolutionText = `Fuh, mantap giler! Stats dorang naik padu!`;
-            statusClass = 'status-positive';
-        } else if (change > -5) {
-            finalIcon = '😬'; // Wince emoji for small negative change
-            evolutionText = `Takde hal, steady je! Sikit je tu, kita push lagi!`;
-            statusClass = 'status-stable';
-        } else {
-            finalIcon = '😥'; // Sad emoji for significant negative change
-            evolutionText = `Alamak, tak onz ni! Kena grind lagi ni, guys!`;
-            statusClass = 'status-negative';
-        }
-
-        evolutionSection.innerHTML = `
-            <p class="font-bold text-lg mb-2">Week 1 Pageviews</p>
-            <div class="flex justify-between w-full mb-4">
-                <span class="text-sm font-comic">August: <b>${item.augustWeek1Pageview.toLocaleString()}</b></span>
-                <span class="text-sm font-comic">September: <b>${item.septemberWeek1Pageview.toLocaleString()}</b></span>
-            </div>
-            <div class="percentage-diff ${change > 0 ? 'text-green-500' : 'text-red-500'} font-bold">
-                ${change > 0 ? '+' : ''}${roundedChange}%
-            </div>
-            <div class="evolution-container">
-                <span class="evolution-icon">${initialIcon}</span>
-                <span class="text-2xl font-bold mx-2">→</span>
-                <span class="evolution-icon">${finalIcon}</span>
-            </div>
-            <span class="evolution-status ${statusClass}">${change > 0 ? 'Evolution' : (change > -5 ? 'Stable' : 'Devolution')}</span>
-            <p class="evolution-text text-gray-700 mt-2">${evolutionText}</p>
-        `;
-
-        collapsibleContent.appendChild(evolutionSection);
+        const combinedContent = document.createElement('div');
+        combinedContent.className = 'collapsible-container';
         
-        progressContentWrapper.appendChild(collapsibleContent);
-        
-        // Add click event listener to toggle the collapsible section
-        collapsibleToggle.addEventListener('click', () => {
-            collapsibleToggle.classList.toggle('open');
-            collapsibleContent.classList.toggle('open');
+        // Add week 2 section with heading
+        const week2Section = document.createElement('div');
+        week2Section.innerHTML = `<h3 class="text-xl font-bold mb-4 text-center">Week 2</h3>`;
+        week2Section.innerHTML += createEvolutionSection(item.augustWeek2Pageview, item.septemberWeek2Pageview);
+        combinedContent.appendChild(week2Section);
+
+        // Add week 1 section with heading
+        const week1Section = document.createElement('div');
+        week1Section.innerHTML = `<h3 class="text-xl font-bold mb-4 text-center">Week 1</h3>`;
+        week1Section.innerHTML += createEvolutionSection(item.augustWeek1Pageview, item.septemberWeek1Pageview);
+        combinedContent.appendChild(week1Section);
+
+        progressContentWrapper.appendChild(combinedContent);
+
+        // Add event listener to toggle the single collapsible section
+        combinedToggle.addEventListener('click', () => {
+            combinedToggle.classList.toggle('open');
+            combinedContent.classList.toggle('open');
         });
 
         itemContainer.appendChild(progressContentWrapper);
