@@ -314,10 +314,10 @@
 
 <script>
     const data = [
-        // Updated data with Week 2 pageviews
-        { name: 'Azri', pageview: 1100000, julyPageview: 675920, augustPageview: 1089746, septemberPageview: 229795, augustWeek1Pageview: 119602, septemberWeek1Pageview: 78534, augustWeek2Pageview: 126053, septemberWeek2Pageview: 15305 },
-        { name: 'Renu', pageview: 850000, julyPageview: 284807, augustPageview: 453898, septemberPageview: 305225, augustWeek1Pageview: 94927, septemberWeek1Pageview: 92364, augustWeek2Pageview: 124129, septemberWeek2Pageview: 102009 },
-        { name: 'Didi', pageview: 600000, julyPageview: 394760, augustPageview: 347769, septemberPageview: 254607, augustWeek1Pageview: 89901, septemberWeek1Pageview: 64408, augustWeek2Pageview: 65505, septemberWeek2Pageview: 87312 }
+        // Updated data with Week 2 and Week 3 pageviews
+        { name: 'Azri', pageview: 1100000, julyPageview: 675920, augustPageview: 1089746, septemberPageview: 229795, augustWeek1Pageview: 119602, septemberWeek1Pageview: 78534, augustWeek2Pageview: 126053, septemberWeek2Pageview: 15305, augustWeek3Pageview: 290607, septemberWeek3Pageview: 129800 },
+        { name: 'Renu', pageview: 850000, julyPageview: 284807, augustPageview: 453898, septemberPageview: 305225, augustWeek1Pageview: 94927, septemberWeek1Pageview: 92364, augustWeek2Pageview: 124129, septemberWeek2Pageview: 102009, augustWeek3Pageview: 125992, septemberWeek3Pageview: 107045 },
+        { name: 'Didi', pageview: 600000, julyPageview: 394760, augustPageview: 347769, septemberPageview: 254607, augustWeek1Pageview: 89901, septemberWeek1Pageview: 64408, augustWeek2Pageview: 65505, septemberWeek2Pageview: 87312, augustWeek3Pageview: 81786, septemberWeek3Pageview: 100491 }
     ];
 
     function getProgressColor(progress) {
@@ -526,6 +526,12 @@
         
         const combinedContent = document.createElement('div');
         combinedContent.className = 'collapsible-container';
+        
+        // Add week 3 section with heading
+        const week3Section = document.createElement('div');
+        week3Section.innerHTML = `<h3 class="text-xl font-bold mb-4 text-center">Week 3</h3>`;
+        week3Section.innerHTML += createEvolutionSection(item.augustWeek3Pageview, item.septemberWeek3Pageview);
+        combinedContent.appendChild(week3Section);
         
         // Add week 2 section with heading
         const week2Section = document.createElement('div');
