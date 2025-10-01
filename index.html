@@ -165,159 +165,24 @@
             border-style: solid;
             border-color: transparent transparent #ede9fe transparent;
         }
-
-        /* Collapsible section styles */
-        .collapsible-container {
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-            max-height: 0;
-            padding: 0 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            color: #4a5568;
-            background-color: #f4e6f9;
-            box-shadow: none;
-            border: none;
-        }
-
-        .collapsible-container.open {
-            max-height: 1000px;
-            padding: 0.75rem 1rem;
-        }
-        
-        .toggle-btn {
-            background-color: #7c3aed;
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            cursor: pointer;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border-radius: 9999px;
-            margin-top: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s, transform 0.2s;
-        }
-        
-        .toggle-btn:hover {
-            background-color: #6d28d9;
-        }
-
-        .toggle-btn .arrow {
-            transition: transform 0.3s ease-in-out;
-            fill: currentColor;
-        }
-
-        .toggle-btn.open .arrow {
-            transform: rotate(180deg);
-        }
-        .font-comic {
-            font-family: 'Comic Neue', sans-serif;
-        }
-
-        .text-green-500 {
-            color: #22c55e;
-        }
-
-        .text-red-500 {
-            color: #ef4444;
-        }
-
-        /* New styles for the evolution section */
-        .evolution-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.5rem;
-            padding: 1rem 0;
-        }
-        
-        .evolution-section + .evolution-section {
-            border-top: 1px dashed #c0a1de;
-            margin-top: 1rem;
-            padding-top: 1rem;
-        }
-
-        .evolution-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .evolution-icon {
-            font-size: 2rem;
-        }
-        
-        .evolution-arrow {
-            font-size: 1.5rem;
-            color: #4a5568;
-        }
-        
-        .evolution-arrow.up {
-            color: #2f855a;
-        }
-        
-        .evolution-arrow.down {
-            color: #c53030;
-        }
-        
-        .percentage-diff {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1rem;
-            text-shadow: 1px 1px #cbd5e0;
-            margin-bottom: 0.5rem;
-            color: #4a5568;
-        }
-
-        .evolution-text {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
-            text-shadow: 1px 1px #cbd5e0;
-        }
-
-        .evolution-status {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 9999px;
-            margin-top: 0.25rem;
-        }
-        
-        .status-positive {
-            background-color: #2f855a;
-            color: white;
-        }
-
-        .status-negative {
-            background-color: #c53030;
-            color: white;
-        }
-
-        .status-stable {
-            background-color: #4a5568;
-            color: white;
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1 class="text-3xl font-bold text-center mb-6">WOB Editorial KPI Progress September 2025</h1>
+    <h1 class="text-3xl font-bold text-center mb-6">WOB Editorial KPI Progress October 2025</h1>
     <div id="progress-container">
         <!-- Progress bars will be injected here by JavaScript -->
     </div>
 </div>
 
 <script>
+    // New data for October, removing all prior month comparison data
     const data = [
-        // Updated data with Week 2 and Week 3 pageviews
-        { name: 'Azri', pageview: 1100000, julyPageview: 675920, augustPageview: 1089746, septemberPageview: 385531, augustWeek1Pageview: 119602, septemberWeek1Pageview: 78534, augustWeek2Pageview: 126053, septemberWeek2Pageview: 15305, augustWeek3Pageview: 290607, septemberWeek3Pageview: 129800 },
-        { name: 'Renu', pageview: 850000, julyPageview: 284807, augustPageview: 453898, septemberPageview: 368217, augustWeek1Pageview: 94927, septemberWeek1Pageview: 92364, augustWeek2Pageview: 124129, septemberWeek2Pageview: 102009, augustWeek3Pageview: 125992, septemberWeek3Pageview: 107045 },
-        { name: 'Didi', pageview: 600000, julyPageview: 394760, augustPageview: 347769, septemberPageview: 342194, augustWeek1Pageview: 89901, septemberWeek1Pageview: 64408, augustWeek2Pageview: 65505, septemberWeek2Pageview: 87312, augustWeek3Pageview: 81786, septemberWeek3Pageview: 100491 }
+        // Monthly Goal (pageview) vs Current October Pageview (octoberPageview)
+        { name: 'Azri', pageview: 1100000, octoberPageview: 1230 },
+        { name: 'Renu', pageview: 850000, octoberPageview: 1741 },
+        { name: 'Didi', pageview: 600000, octoberPageview: 2711 }
     ];
 
     function getProgressColor(progress) {
@@ -351,30 +216,13 @@
     }
 
     function getMotivationalMessage(progress, name) {
+        // Since we are starting October, the progress is low, so the message is always encouraging for the start of the race.
         if (name === 'Azri') {
-            if (progress >= 90) {
-                return "Steady lah, Azri! Pageviews padu giler bossku. Onz! 🎉";
-            } else if (progress >= 50) {
-                return "Nice one, Azri! You're halfway there, takdehal lahhh. Keep it up! 👏";
-            } else {
-                return "Chill lahh, Azri. Journey tu masih jauh. We got this! 🚀";
-            }
+            return "Chill lahh, Azri. October just started, let's build the momentum! We got this! 🚀";
         } else if (name === 'Renu') {
-            if (progress >= 90) {
-                return "Cun giler, Renu! Your content is onz fire. Next level! 🔥";
-            } else if (progress >= 50) {
-                return "Solid, Renu! Almost there. Onzzz, push lagi sikit. 💪";
-            } else {
-                return "Takpe, Renu. Slow and steady. Tak kalut. We'll get there! ✨";
-            }
+            return "Takpe, Renu. October is a marathon, not a sprint. Every view counts! Start strong! ✨";
         } else if (name === 'Didi') {
-            if (progress >= 90) {
-                return "Fuyoh, Didi! Your pageviews so high, just like your spirit. Padu! 🤩";
-            } else if (progress >= 50) {
-                return "Mantap, Didi! More than half the way. Let's go! 💃";
-            } else {
-                return "Jangan risau, Didi. Takdehal! The grind is real. Kita onz je. 😉";
-            }
+            return "Jangan risau, Didi. Takdehal! The first few days set the tone. Kita onz je. 😉";
         }
         return "Keep up the great work!";
     }
@@ -422,52 +270,9 @@
         }
     }
 
-    function createEvolutionSection(augustViews, septemberViews) {
-        const change = ((septemberViews - augustViews) / augustViews) * 100;
-        const roundedChange = change.toFixed(2);
-
-        let initialIcon = '😐';
-        let finalIcon;
-        let evolutionText;
-        let statusClass;
-
-        if (change >= 0) {
-            finalIcon = '😁';
-            evolutionText = `Fuh, mantap giler! Stats naik padu!`;
-            statusClass = 'status-positive';
-        } else if (change > -5) {
-            finalIcon = '😬';
-            evolutionText = `Takde hal, steady je! Sikit je tu, kita push lagi!`;
-            statusClass = 'status-stable';
-        } else {
-            finalIcon = '😥';
-            evolutionText = `Alamak, tak onz ni! Kena grind lagi ni, guys!`;
-            statusClass = 'status-negative';
-        }
-
-        return `
-            <div class="evolution-section">
-                <div class="flex justify-between w-full mb-4">
-                    <span class="text-sm font-comic">August: <b>${augustViews.toLocaleString()}</b></span>
-                    <span class="text-sm font-comic">September: <b>${septemberViews.toLocaleString()}</b></span>
-                </div>
-                <div class="percentage-diff ${change > 0 ? 'text-green-500' : 'text-red-500'} font-bold">
-                    ${change > 0 ? '+' : ''}${roundedChange}%
-                </div>
-                <div class="evolution-container">
-                    <span class="evolution-icon">${initialIcon}</span>
-                    <span class="text-2xl font-bold mx-2">→</span>
-                    <span class="evolution-icon">${finalIcon}</span>
-                </div>
-                <span class="evolution-status ${statusClass}">${change > 0 ? 'Evolution' : (change > -5 ? 'Stable' : 'Devolution')}</span>
-                <p class="evolution-text text-gray-700 mt-2">${evolutionText}</p>
-            </div>
-        `;
-    }
-
     function renderProgressBar(item) {
-        // Calculate the progress based on current pageview (September)
-        const progress = (item.septemberPageview / item.pageview) * 100;
+        // Calculate the progress based on current October pageview
+        const progress = (item.octoberPageview / item.pageview) * 100;
         
         const itemContainer = document.createElement('div');
         itemContainer.className = 'progress-item-container';
@@ -501,7 +306,7 @@
 
         const pageviewDiv = document.createElement('div');
         pageviewDiv.className = 'text-sm text-gray-500 mt-1';
-        pageviewDiv.innerHTML = `Current pageview: <b>${item.septemberPageview.toLocaleString()}</b>/<b>${item.pageview.toLocaleString()}</b>`;
+        pageviewDiv.innerHTML = `Current pageview: <b>${item.octoberPageview.toLocaleString()}</b>/<b>${item.pageview.toLocaleString()}</b>`;
         progressContentWrapper.appendChild(pageviewDiv);
 
         const messageBubble = document.createElement('div');
@@ -513,58 +318,21 @@
         messageBubble.appendChild(messageDiv);
         progressContentWrapper.appendChild(messageBubble);
 
-        // --- Combined Collapsible Section for both weeks ---
-        const combinedToggle = document.createElement('button');
-        combinedToggle.className = 'toggle-btn mt-4';
-        combinedToggle.innerHTML = `
-            <span class="mr-2">Performance vs August</span>
-            <svg class="arrow w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
-        `;
-        progressContentWrapper.appendChild(combinedToggle);
-        
-        const combinedContent = document.createElement('div');
-        combinedContent.className = 'collapsible-container';
-        
-        // Add week 3 section with heading
-        const week3Section = document.createElement('div');
-        week3Section.innerHTML = `<h3 class="text-xl font-bold mb-4 text-center">Week 3</h3>`;
-        week3Section.innerHTML += createEvolutionSection(item.augustWeek3Pageview, item.septemberWeek3Pageview);
-        combinedContent.appendChild(week3Section);
-        
-        // Add week 2 section with heading
-        const week2Section = document.createElement('div');
-        week2Section.innerHTML = `<h3 class="text-xl font-bold mb-4 text-center">Week 2</h3>`;
-        week2Section.innerHTML += createEvolutionSection(item.augustWeek2Pageview, item.septemberWeek2Pageview);
-        combinedContent.appendChild(week2Section);
-
-        // Add week 1 section with heading
-        const week1Section = document.createElement('div');
-        week1Section.innerHTML = `<h3 class="text-xl font-bold mb-4 text-center">Week 1</h3>`;
-        week1Section.innerHTML += createEvolutionSection(item.augustWeek1Pageview, item.septemberWeek1Pageview);
-        combinedContent.appendChild(week1Section);
-
-        progressContentWrapper.appendChild(combinedContent);
-
-        // Add event listener to toggle the single collapsible section
-        combinedToggle.addEventListener('click', () => {
-            combinedToggle.classList.toggle('open');
-            combinedContent.classList.toggle('open');
-        });
+        // NOTE: Removed the entire collapsible comparison section as requested.
 
         itemContainer.appendChild(progressContentWrapper);
         progressContainer.appendChild(itemContainer);
 
         setTimeout(() => {
+            // Animate the progress bar fill
             barFillDiv.style.width = `${progress}%`;
         }, 100);
     }
 
     const progressContainer = document.getElementById('progress-container');
 
-    // Sort data based on September percentage in descending order
-    data.sort((a, b) => (b.septemberPageview / b.pageview) - (a.septemberPageview / a.pageview));
+    // Sort data based on October percentage in descending order
+    data.sort((a, b) => (b.octoberPageview / b.pageview) - (a.octoberPageview / a.pageview));
 
     // Render the progress bars
     data.forEach(renderProgressBar);
