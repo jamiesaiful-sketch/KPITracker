@@ -79,3 +79,304 @@
             0% { transform: rotate(0deg); }
             25% { transform: rotate(5deg); }
             50% { transform: rotate(0deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .avatar-azri {
+            animation: azri-dance 1s ease-in-out infinite;
+        }
+
+        .avatar-renu-didi {
+            animation: renu-didi-dance 1.2s ease-in-out infinite;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: 700;
+        }
+
+        /* Monospace font for the percentage text for a KPI feel */
+        .progress-percentage {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.25rem; /* Large text for emphasis */
+            color: #1f2937; /* Darker color for prominence */
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 2rem;
+            background-color: #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 2px solid #cbd5e0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 1s ease-in-out;
+            background-image: linear-gradient(to right, #4c51bf, #434190);
+        }
+
+        /* Colors for the main progress bar */
+        .progress-high {
+            background-image: linear-gradient(to right, #22c55e, #10b981);
+        }
+        .progress-medium {
+            background-image: linear-gradient(to right, #facc15, #f59e0b);
+        }
+        .progress-low {
+            background-image: linear-gradient(to right, #ef4444, #dc2626);
+        }
+        
+        /* Colors for the stick figure */
+        .fill-high {
+            fill: #10b981;
+            stroke: #10b981;
+        }
+        .fill-medium {
+            fill: #f59e0b;
+            stroke: #f59e0b;
+        }
+        .fill-low {
+            fill: #dc2626;
+            stroke: #dc2626;
+        }
+
+        /* Text bubble styles */
+        .message-bubble {
+            position: relative;
+            background-color: #ede9fe;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 100%; 
+        }
+        
+        .message-bubble p {
+            font-family: 'Comic Neue', sans-serif;
+            font-weight: bold;
+            color: #4c1d95; /* A vibrant purple for the message text */
+            line-height: 1.3;
+        }
+
+        .message-bubble::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 10%; 
+            transform: translateX(-10px);
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent #ede9fe transparent;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-3xl font-extrabold text-center mb-10 text-gray-800">WOB Editorial KPI Tracker 📊</h1>
+    <div id="progress-container">
+        </div>
+</div>
+
+<script>
+    // Note: Current date is simulated as October 17, 2025 (17 days passed in Oct)
+    const daysInMonth = 31; 
+    const currentDay = 17;
+    const targetProgress = (currentDay / daysInMonth) * 100; // Expected progress for Oct 17th is ~54.84%
+    const aheadThreshold = targetProgress + 5; // ~59.84%
+    const onTrackThreshold = targetProgress - 5; // ~49.84%
+
+    const data = [
+        // Monthly Goal (pageview) vs Current October Pageview (octoberPageview)
+        { name: 'Azri', pageview: 1100000, octoberPageview: 551721 },
+        { name: 'Renu', pageview: 850000, octoberPageview: 175119 },
+        { name: 'Didi', pageview: 600000, octoberPageview: 174711 }
+    ];
+
+    function getProgressColor(progress) {
+        if (progress >= 90) {
+            return 'progress-high';
+        } else if (progress >= onTrackThreshold) {
+            // Use onTrackThreshold for medium color
+            return 'progress-medium';
+        } else {
+            return 'progress-low';
+        }
+    }
+
+    function getStickFigureColor(progress) {
+        if (progress >= 90) {
+            return 'fill-high';
+        } else if (progress >= onTrackThreshold) {
+            return 'fill-medium';
+        } else {
+            return 'fill-low';
+        }
+    }
+
+    function getStickFigureEmoji(progress) {
+        if (progress >= 90) {
+            return '🤩'; // Star-struck for nearly hitting target
+        } else if (progress >= aheadThreshold) {
+            return '🚀'; // Exceeding target significantly
+        } else if (progress >= onTrackThreshold) {
+             return '💪'; // On track/Strong emoji
+        } else if (progress >= 30) {
+            return '🤔'; // Thinking about momentum
+        } else {
+            return '😬'; // A little nervous
+        }
+    }
+
+    // NEW LOGIC for motivational messages
+    function getMotivationalMessage(progress, name) {
+        // Performance for Azri (50.16%) -> On Track (since 50.16% >= 49.84%)
+        if (name === 'Azri') {
+            if (progress >= aheadThreshold) {
+                return "Jom! Azri's flying high! Focus on maximizing those top articles. Next stop: 1 Million! 🎯";
+            } else if (progress >= onTrackThreshold) {
+                return "Chill lahh, Azri. Right where we need you for the mid-month push. Keep up the high-volume posting! 💪";
+            } else {
+                return "Takpe, Azri. Time for a power-up! Let's get 2-3 new high-impact articles out before the weekend. You got this! ✨";
+            }
+        } 
+        
+        // Performance for Renu (20.60%) -> Behind
+        else if (name === 'Renu') {
+            if (progress >= aheadThreshold) {
+                return "Awesome, Renu! Your content is booming! Let's sustain this energy through month-end for a huge win! 🚀";
+            } else if (progress >= onTrackThreshold) {
+                return "Good progress, Renu. The second half of the month is crucial. Look for trending topics to give your pageviews a massive boost! 🤔";
+            } else {
+                return "Jangan risau, Renu. Every view counts! Focus on converting one or two popular stories into viral hits. We're rooting for you! 😉";
+            }
+        } 
+        
+        // Performance for Didi (29.12%) -> Behind
+        else if (name === 'Didi') {
+            if (progress >= aheadThreshold) {
+                return "Wow Didi, impressive run! Let's analyze what's working and double-down on those formats. Full speed ahead! 🤩";
+            } else if (progress >= onTrackThreshold) {
+                return "Well done, Didi. On track for goal! Keep monitoring your traffic channels. Consistent posting is key to crossing the line! 👍";
+            } else {
+                return "Takdehal, Didi. We need a strong comeback! Focus on titles and shares this week. A major viral hit will close the gap quickly! Jom! 🔥";
+            }
+        }
+        
+        return "Keep up the great work!";
+    }
+
+    function createStickFigureSVG(item) {
+        const colorClass = getStickFigureColor(item.progress);
+        const emoji = getStickFigureEmoji(item.progress);
+        const avatarClass = item.name === 'Azri' ? 'avatar-azri' : 'avatar-renu-didi';
+
+        // Adjusted the SVG size and structure for better appearance
+        if (item.name === 'Renu' || item.name === 'Didi') {
+            // Female stick figure with a dancing dress and feet
+            return `
+                <svg class="w-18 h-18 ${avatarClass}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M45 50 L35 85 L65 85 L55 50 Z" class="${colorClass}" fill="none" stroke-width="5" stroke-linejoin="round" />
+                    <line x1="45" y1="50" x2="35" y2="40" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <line x1="55" y1="50" x2="65" y2="40" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <line x1="45" y1="85" x2="40" y2="95" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <line x1="55" y1="85" x2="60" y2="95" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <text x="50" y="35" font-size="40" text-anchor="middle">${emoji}</text>
+                </svg>
+            `;
+        } else {
+            // Male stick figure with a dancing suit
+            return `
+                <svg class="w-18 h-18 ${avatarClass}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2300/svg">
+                    <path d="M40 45 L50 55 L60 45 L60 70 L40 70 Z" class="${colorClass}" fill="none" stroke-width="5" stroke-linejoin="round" />
+                    <line x1="40" y1="50" x2="30" y2="35" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <line x1="60" y1="50" x2="70" y2="65" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <line x1="45" y1="70" x2="35" y2="85" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <line x1="55" y1="70" x2="55" y2="90" class="${colorClass}" stroke-width="5" stroke-linecap="round" />
+                    <text x="50" y="35" font-size="40" text-anchor="middle">${emoji}</text>
+                </svg>
+            `;
+        }
+    }
+
+    function renderProgressBar(item) {
+        // Calculate the progress based on current October pageview
+        const progress = (item.octoberPageview / item.pageview) * 100;
+        
+        const itemContainer = document.createElement('div');
+        itemContainer.className = 'progress-item-container';
+
+        const avatarDiv = document.createElement('div');
+        avatarDiv.className = `stick-figure-avatar`;
+        // Pass the dynamically calculated progress to the SVG creator
+        avatarDiv.innerHTML = createStickFigureSVG({ ...item, progress: progress });
+        itemContainer.appendChild(avatarDiv);
+
+        const progressContentWrapper = document.createElement('div');
+        progressContentWrapper.className = 'progress-content-wrapper';
+
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'progress-label';
+        labelDiv.innerHTML = `
+            <span>${item.name}</span>
+            <span class="progress-percentage">${progress.toFixed(2)}%</span>
+        `;
+        progressContentWrapper.appendChild(labelDiv);
+        
+        const barBgDiv = document.createElement('div');
+        barBgDiv.className = 'progress-bar-bg';
+        // ARIA attributes for accessibility
+        barBgDiv.setAttribute('role', 'progressbar');
+        barBgDiv.setAttribute('aria-valuenow', progress.toFixed(2));
+        barBgDiv.setAttribute('aria-valuemin', '0');
+        barBgDiv.setAttribute('aria-valuemax', '100');
+        barBgDiv.setAttribute('aria-label', `${item.name} progress: ${progress.toFixed(2)} percent`);
+
+        const barFillDiv = document.createElement('div');
+        // Use the calculated progress to determine the color
+        barFillDiv.className = `progress-bar-fill ${getProgressColor(progress)}`;
+        barFillDiv.style.width = '0%';
+        barBgDiv.appendChild(barFillDiv);
+        progressContentWrapper.appendChild(barBgDiv);
+
+        const pageviewDiv = document.createElement('div');
+        pageviewDiv.className = 'text-sm text-gray-500 mt-1 font-medium text-right'; 
+        pageviewDiv.innerHTML = `Current: <b>${item.octoberPageview.toLocaleString()}</b> / Goal: <b>${item.pageview.toLocaleString()}</b>`;
+        progressContentWrapper.appendChild(pageviewDiv);
+
+        const messageBubble = document.createElement('div');
+        messageBubble.className = 'message-bubble';
+
+        const messageDiv = document.createElement('p');
+        messageDiv.className = 'text-sm font-medium';
+        messageDiv.textContent = getMotivationalMessage(progress, item.name);
+        messageBubble.appendChild(messageDiv);
+        progressContentWrapper.appendChild(messageBubble);
+
+        itemContainer.appendChild(progressContentWrapper);
+        progressContainer.appendChild(itemContainer);
+
+        // Animate the progress bar fill after a slight delay
+        setTimeout(() => {
+            barFillDiv.style.width = `${progress}%`;
+        }, 100);
+    }
+
+    const progressContainer = document.getElementById('progress-container');
+
+    // Sort data based on October percentage in descending order
+    data.sort((a, b) => (b.octoberPageview / b.pageview) - (a.octoberPageview / a.pageview));
+
+    // Render the progress bars
+    data.forEach(renderProgressBar);
+</script>
+
+</body>
+</html>
