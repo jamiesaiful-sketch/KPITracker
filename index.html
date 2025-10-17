@@ -215,17 +215,34 @@
         }
     }
 
-      function getMotivationalMessage(progress, name) {
-        // Since we are starting October, the progress is low, so the message is always encouraging for the start of the race.
+    // Gen Z Malaysian motivational speeches, personalized for each writer and progress
+    function getMotivationalMessage(progress, name) {
         if (name === 'Azri') {
-            return "Chill lahh, Azri. October just started, let's build the momentum! We got this! 🚀";
+            if (progress >= 90) {
+                return "Azri, kau memang legend! Gila ah, dah dekat target, teruskan momentum, jangan kasi slow! Semua tengok kau ni, power gila! 🚀🔥";
+            } else if (progress >= 50) {
+                return "Azri, kau steady lah! Baru masuk half, jangan slow-slow, kasi push lagi! Jangan lupa, kita nak viral bulan ni! 🚀🔥";
+            } else {
+                return "Azri, baru warm up bro, jangan stress. Kasi grind sikit lagi, nanti meletup! Kita all in, jangan bagi alasan! 😎💥";
+            }
         } else if (name === 'Renu') {
-            return "Takpe, Renu. October is a marathon, not a sprint. Every view counts! Start strong! ✨";
+            if (progress >= 90) {
+                return "Renu, you on fire lah! Almost capai target, jangan give up. Kasi padu lagi, semua support awak! 🙌✨";
+            } else if (progress >= 50) {
+                return "Renu, halfway je, jangan stop! Kasi hustle sikit lagi, nanti semua pageview masuk. Jangan lupa chill, tapi jangan tidur! 😄🔥";
+            } else {
+                return "Renu, baru start bro, relax dulu! Pageview ni boleh naik, asal konsisten je. Jangan risau, semua boleh settle, chillax dulu! 😎✨";
+            }
         } else if (name === 'Didi') {
-            return "Jangan risau, Didi. Takdehal! The first few days set the tone. Kita onz je. 😉";
+            if (progress >= 90) {
+                return "Didi, kau dah nak sampai, sikit lagi! Kasi gas, jangan slow, kita sama-sama sampai puncak. Gempak lah kau! 💯🚀";
+            } else if (progress >= 50) {
+                return "Didi, halfway sudah, jangan malas! Kasi push lagi sikit, nanti semua surprised tengok result. Kita go, jangan give up! 🤩💪";
+            } else {
+                return "Didi, jangan down lah, baru quarter jalan! Lepas ni kasi all out, jangan malas-malas! Boleh catch up, kita support sama-sama! 🤙💪";
+            }
         }
         return "Keep up the great work!";
-
     }
 
     function createStickFigureSVG(item) {
