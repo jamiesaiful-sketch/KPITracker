@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Comic+Neue:wght@400;700&family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Comic+Neue:wght@400;700&family=IBM+Plex+Mono:wght@600&display=swap');
 
         body {
             font-family: 'Inter', sans-serif;
@@ -23,7 +23,7 @@
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px; /* Slightly wider container */
             background-color: #ffffff;
             border-radius: 1.5rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -36,7 +36,7 @@
             flex-direction: column;
             align-items: center;
             gap: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem; /* Increased margin for separation */
         }
         
         /* Desktop layout for progress items */
@@ -44,6 +44,7 @@
             .progress-item-container {
                 flex-direction: row;
                 align-items: center;
+                gap: 2rem; /* Increased gap */
             }
         }
 
@@ -56,8 +57,8 @@
         }
 
         .stick-figure-avatar {
-            width: 4rem;
-            height: 4rem;
+            width: 4.5rem; /* Slightly larger avatar */
+            height: 4.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -78,265 +79,3 @@
             0% { transform: rotate(0deg); }
             25% { transform: rotate(5deg); }
             50% { transform: rotate(0deg); }
-            75% { transform: rotate(-5deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        .avatar-azri {
-            animation: azri-dance 1s ease-in-out infinite;
-        }
-
-        .avatar-renu-didi {
-            animation: renu-didi-dance 1.2s ease-in-out infinite;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            font-weight: 600;
-        }
-
-        .progress-bar-bg {
-            width: 100%;
-            height: 2rem;
-            background-color: #e2e8f0;
-            border-radius: 9999px;
-            overflow: hidden;
-            border: 2px solid #cbd5e0;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            border-radius: 9999px;
-            transition: width 1s ease-in-out;
-            background-image: linear-gradient(to right, #4c51bf, #434190);
-        }
-
-        /* Colors for the main progress bar */
-        .progress-high {
-            background-image: linear-gradient(to right, #22c55e, #10b981);
-        }
-        .progress-medium {
-            background-image: linear-gradient(to right, #facc15, #f59e0b);
-        }
-        .progress-low {
-            background-image: linear-gradient(to right, #ef4444, #dc2626);
-        }
-        
-        /* Colors for the stick figure */
-        .fill-high {
-            fill: #22c55e;
-            stroke: #22c55e;
-        }
-        .fill-medium {
-            fill: #facc15;
-            stroke: #facc15;
-        }
-        .fill-low {
-            fill: #ef4444;
-            stroke: #ef4444;
-        }
-
-        /* Text bubble styles */
-        .message-bubble {
-            position: relative;
-            background-color: #ede9fe;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin-top: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            max-width: 80%;
-        }
-        
-        .message-bubble p {
-            font-family: 'Comic Neue', sans-serif;
-            font-weight: bold;
-        }
-
-        .message-bubble::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 20%;
-            transform: translateX(-10px);
-            border-width: 0 10px 10px 10px;
-            border-style: solid;
-            border-color: transparent transparent #ede9fe transparent;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1 class="text-3xl font-bold text-center mb-6">WOB Editorial KPI Progress October 2025</h1>
-    <div id="progress-container">
-        <!-- Progress bars will be injected here by JavaScript -->
-    </div>
-</div>
-
-<script>
-    // New data for October, removing all prior month comparison data
-    const data = [
-        // Monthly Goal (pageview) vs Current October Pageview (octoberPageview)
-        { name: 'Azri', pageview: 1100000, octoberPageview: 551721 },
-        { name: 'Renu', pageview: 850000, octoberPageview: 175119 },
-        { name: 'Didi', pageview: 600000, octoberPageview: 174711 }
-    ];
-
-    function getProgressColor(progress) {
-        if (progress >= 90) {
-            return 'progress-high';
-        } else if (progress >= 50) {
-            return 'progress-medium';
-        } else {
-            return 'progress-low';
-        }
-    }
-
-    function getStickFigureColor(progress) {
-        if (progress >= 90) {
-            return 'fill-high';
-        } else if (progress >= 50) {
-            return 'fill-medium';
-        } else {
-            return 'fill-low';
-        }
-    }
-
-    function getStickFigureEmoji(progress) {
-        if (progress >= 90) {
-            return '😊'; // Happy emoji
-        } else if (progress >= 50) {
-            return '😐'; // Neutral emoji
-        } else {
-            return '😞'; // Sad emoji
-        }
-    }
-
-    function getMotivationalMessage(progress, name) {
-        // Since we are starting October, the progress is low, so the message is always encouraging for the start of the race.
-        if (name === 'Azri') {
-            return "Chill lahh, Azri. October just started, let's build the momentum! We got this! 🚀";
-        } else if (name === 'Renu') {
-            return "Takpe, Renu. October is a marathon, not a sprint. Every view counts! Start strong! ✨";
-        } else if (name === 'Didi') {
-            return "Jangan risau, Didi. Takdehal! The first few days set the tone. Kita onz je. 😉";
-        }
-        return "Keep up the great work!";
-    }
-
-    function createStickFigureSVG(item) {
-        const colorClass = getStickFigureColor(item.progress);
-        const emoji = getStickFigureEmoji(item.progress);
-
-        if (item.name === 'Renu' || item.name === 'Didi') {
-            // Female stick figure with a dancing dress and feet
-            return `
-                <svg class="w-16 h-16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Dress -->
-                    <path d="M45 50 L35 85 L65 85 L55 50 Z" class="${colorClass}" fill="none" stroke-width="4" stroke-linejoin="round" />
-                    <!-- Left Arm (up) -->
-                    <line x1="45" y1="50" x2="35" y2="40" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Right Arm (out) -->
-                    <line x1="55" y1="50" x2="65" y2="40" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Left Leg -->
-                    <line x1="45" y1="85" x2="40" y2="95" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Right Leg -->
-                    <line x1="55" y1="85" x2="60" y2="95" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Emoji for the head -->
-                    <text x="50" y="35" font-size="40" text-anchor="middle">${emoji}</text>
-                </svg>
-            `;
-        } else {
-            // Male stick figure with a dancing suit
-            return `
-                <svg class="w-16 h-16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Body (suit) -->
-                    <path d="M40 45 L50 55 L60 45 L60 70 L40 70 Z" class="${colorClass}" fill="none" stroke-width="4" stroke-linejoin="round" />
-                    <!-- Left Arm (up) -->
-                    <line x1="40" y1="50" x2="30" y2="35" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Right Arm (down) -->
-                    <line x1="60" y1="50" x2="70" y2="65" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Left Leg (out) -->
-                    <line x1="45" y1="70" x2="35" y2="85" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Right Leg (straight) -->
-                    <line x1="55" y1="70" x2="55" y2="90" class="${colorClass}" stroke-width="4" stroke-linecap="round" />
-                    <!-- Emoji for the head -->
-                    <text x="50" y="35" font-size="40" text-anchor="middle">${emoji}</text>
-                </svg>
-            `;
-        }
-    }
-
-    function renderProgressBar(item) {
-        // Calculate the progress based on current October pageview
-        const progress = (item.octoberPageview / item.pageview) * 100;
-        
-        const itemContainer = document.createElement('div');
-        itemContainer.className = 'progress-item-container';
-
-        const avatarDiv = document.createElement('div');
-        avatarDiv.className = `stick-figure-avatar ${item.name === 'Azri' ? 'avatar-azri' : 'avatar-renu-didi'}`;
-        // Pass the dynamically calculated progress to the SVG creator
-        avatarDiv.innerHTML = createStickFigureSVG({ ...item, progress: progress });
-        itemContainer.appendChild(avatarDiv);
-
-        const progressContentWrapper = document.createElement('div');
-        progressContentWrapper.className = 'progress-content-wrapper';
-
-        const labelDiv = document.createElement('div');
-        labelDiv.className = 'progress-label';
-        labelDiv.innerHTML = `
-            <span>${item.name}</span>
-            <span>${progress.toFixed(2)}%</span>
-        `;
-        progressContentWrapper.appendChild(labelDiv);
-        
-        const barBgDiv = document.createElement('div');
-        barBgDiv.className = 'progress-bar-bg';
-
-        const barFillDiv = document.createElement('div');
-        // Use the calculated progress to determine the color
-        barFillDiv.className = `progress-bar-fill ${getProgressColor(progress)}`;
-        barFillDiv.style.width = '0%';
-        barBgDiv.appendChild(barFillDiv);
-        progressContentWrapper.appendChild(barBgDiv);
-
-        const pageviewDiv = document.createElement('div');
-        pageviewDiv.className = 'text-sm text-gray-500 mt-1';
-        pageviewDiv.innerHTML = `Current pageview: <b>${item.octoberPageview.toLocaleString()}</b>/<b>${item.pageview.toLocaleString()}</b>`;
-        progressContentWrapper.appendChild(pageviewDiv);
-
-        const messageBubble = document.createElement('div');
-        messageBubble.className = 'message-bubble';
-
-        const messageDiv = document.createElement('p');
-        messageDiv.className = 'text-sm font-medium';
-        messageDiv.textContent = getMotivationalMessage(progress, item.name);
-        messageBubble.appendChild(messageDiv);
-        progressContentWrapper.appendChild(messageBubble);
-
-        // NOTE: Removed the entire collapsible comparison section as requested.
-
-        itemContainer.appendChild(progressContentWrapper);
-        progressContainer.appendChild(itemContainer);
-
-        setTimeout(() => {
-            // Animate the progress bar fill
-            barFillDiv.style.width = `${progress}%`;
-        }, 100);
-    }
-
-    const progressContainer = document.getElementById('progress-container');
-
-    // Sort data based on October percentage in descending order
-    data.sort((a, b) => (b.octoberPageview / b.pageview) - (a.octoberPageview / a.pageview));
-
-    // Render the progress bars
-    data.forEach(renderProgressBar);
-</script>
-
-</body>
-</html>
