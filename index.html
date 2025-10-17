@@ -215,34 +215,16 @@
         }
     }
 
-     function getMotivationalMessage(progress, name) {
+      function getMotivationalMessage(progress, name) {
+        // Since we are starting October, the progress is low, so the message is always encouraging for the start of the race.
         if (name === 'Azri') {
-            if (progress >= 90) {
-                return "Steady lah, Azri! Pageviews padu giler bossku. Onz! 🎉";
-            } else if (progress >= 50) {
-                return "Nice one, Azri! You're halfway there, takdehal lahhh. Keep it up! 👏";
-            } else {
-                return "Chill lahh, Azri. Journey tu masih jauh. We got this! 🚀";
-            }
+            return "Chill lahh, Azri. October just started, let's build the momentum! We got this! 🚀";
         } else if (name === 'Renu') {
-            if (progress >= 90) {
-                return "Cun giler, Renu! Your content is onz fire. Next level! 🔥";
-            } else if (progress >= 50) {
-                return "Solid, Renu! Almost there. Onzzz, push lagi sikit. 💪";
-            } else {
-                return "Takpe, Renu. Slow and steady. Tak kalut. We'll get there! ✨";
-            }
+            return "Takpe, Renu. October is a marathon, not a sprint. Every view counts! Start strong! ✨";
         } else if (name === 'Didi') {
-            if (progress >= 90) {
-                return "Fuyoh, Didi! Your pageviews so high, just like your spirit. Padu! 🤩";
-            } else if (progress >= 50) {
-                return "Mantap, Didi! More than half the way. Let's go! 💃";
-            } else {
-                return "Jangan risau, Didi. Takdehal! The grind is real. Kita onz je. 😉";
-            }
+            return "Jangan risau, Didi. Takdehal! The first few days set the tone. Kita onz je. 😉";
         }
         return "Keep up the great work!";
-    }
 
     }
 
