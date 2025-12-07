@@ -170,19 +170,19 @@
 <body>
 
 <div class="container">
-    <h1 class="text-3xl font-bold text-center mb-6">WOB Editorial KPI Progress December 2025</h1>
+    <h1 class="text-3xl font-bold text-center mb-6">WOB Editorial KPI Progress November 2025</h1>
     <div id="progress-container">
         <!-- Progress bars will be injected here by JavaScript -->
     </div>
 </div>
 
 <script>
-    // New data for December, removing all prior month comparison data
+    // New data for November, removing all prior month comparison data
     const data = [
-        // Monthly Goal (pageview) vs Current December Pageview (DecemberPageview)
-        { name: 'Azri', pageview: 1100000, DecemberPageview: 104875 },
-        { name: 'Renu', pageview: 850000, DeemberPageview: 58408 },
-        { name: 'Didi', pageview: 600000, DecemberPageview: 24604 }
+        // Monthly Goal (pageview) vs Current November Pageview (NovemberPageview)
+        { name: 'Azri', pageview: 1100000, NovemberPageview: 749901 },
+        { name: 'Renu', pageview: 850000, NovemberPageview: 264546 },
+        { name: 'Didi', pageview: 600000, NovemberPageview: 355221 }
     ]
 
     function getProgressColor(progress) {
@@ -207,11 +207,11 @@
 
     function getStickFigureEmoji(progress) {
         if (progress >= 90) {
-            return '\ud83d\ude0a'; // Happy emoji
+            return '😊'; // Happy emoji
         } else if (progress >= 50) {
-            return '\ud83d\ude10'; // Neutral emoji
+            return '😐'; // Neutral emoji
         } else {
-            return '\ud83d\ude1e'; // Sad emoji
+            return '😞'; // Sad emoji
         }
     }
 
@@ -219,27 +219,27 @@
     function getMotivationalMessage(progress, name) {
         if (name === 'Azri') {
             if (progress >= 90) {
-                return "Azri, kau memang legend! Gila ah, dah dekat target, teruskan momentum, jangan kasi slow! Semua tengok kau ni, power gila! \ud83d\ude80\ud83d\udd25";
+                return "Azri, kau memang legend! Gila ah, dah dekat target, teruskan momentum, jangan kasi slow! Semua tengok kau ni, power gila! 🚀🔥";
             } else if (progress >= 50) {
-                return "Azri, kau steady lah! Baru masuk half, jangan slow-slow, kasi push lagi! Jangan lupa, kita nak viral bulan ni! \ud83d\ude80\ud83d\udd25";
+                return "Azri, kau steady lah! Baru masuk half, jangan slow-slow, kasi push lagi! Jangan lupa, kita nak viral bulan ni! 🚀🔥";
             } else {
-                return "Azri, baru warm up bro, jangan stress. Kasi grind sikit lagi, nanti meletup! Kita all in, jangan bagi alasan! \ud83d\ude0e\ud83d\udca5";
+                return "Azri, baru warm up bro, jangan stress. Kasi grind sikit lagi, nanti meletup! Kita all in, jangan bagi alasan! 😎💥";
             }
         } else if (name === 'Renu') {
             if (progress >= 90) {
-                return "Renu, you on fire lah! Almost capai target, jangan give up. Kasi padu lagi, semua support awak! \ud83d\ude4c\u2728";
+                return "Renu, you on fire lah! Almost capai target, jangan give up. Kasi padu lagi, semua support awak! 🙌✨";
             } else if (progress >= 50) {
-                return "Renu, halfway je, jangan stop! Kasi hustle sikit lagi, nanti semua pageview masuk. Jangan lupa chill, tapi jangan tidur! \ud83d\ude04\ud83d\udd25";
+                return "Renu, halfway je, jangan stop! Kasi hustle sikit lagi, nanti semua pageview masuk. Jangan lupa chill, tapi jangan tidur! 😄🔥";
             } else {
-                return "Renu, baru start sis, relax dulu! Pageview ni boleh naik, asal konsisten je. Jangan risau, semua boleh settle, chillax dulu! \ud83d\ude0e\u2728";
+                return "Renu, baru start sis, relax dulu! Pageview ni boleh naik, asal konsisten je. Jangan risau, semua boleh settle, chillax dulu! 😎✨";
             }
         } else if (name === 'Didi') {
             if (progress >= 90) {
-                return "Didi, kau dah nak sampai, sikit lagi! Kasi gas, jangan slow, kita sama-sama sampai puncak. Gempak lah kau! \ud83d\udcaf\ud83d\ude80";
+                return "Didi, kau dah nak sampai, sikit lagi! Kasi gas, jangan slow, kita sama-sama sampai puncak. Gempak lah kau! 💯🚀";
             } else if (progress >= 50) {
-                return "Didi, halfway sudah, thorrbaekk! Kasi push lagi sikit, nanti semua in awe tengok result. Kita go, jangan give up! \ud83e\udd29\ud83d\udcaa";
+                return "Didi, halfway sudah, thorrbaekk! Kasi push lagi sikit, nanti semua in awe tengok result. Kita go, jangan give up! 🤩💪";
             } else {
-                return "Didi, jangan down lah, baru quarter jalan! Lepas ni kasi all out bestie! Boleh catch up, kita support sama-sama! \ud83e\udd19\ud83d\udcaa";
+                return "Didi, jangan down lah, baru quarter jalan! Lepas ni kasi all out bestie! Boleh catch up, kita support sama-sama! 🤙💪";
             }
         }
         return "Keep up the great work!";
@@ -289,8 +289,8 @@
     }
 
     function renderProgressBar(item) {
-        // Calculate the progress based on current December pageview
-        const progress = (item.DecemberPageview / item.pageview) * 100;
+        // Calculate the progress based on current November pageview
+        const progress = (item.NovemberPageview / item.pageview) * 100;
         
         const itemContainer = document.createElement('div');
         itemContainer.className = 'progress-item-container';
@@ -324,7 +324,7 @@
 
         const pageviewDiv = document.createElement('div');
         pageviewDiv.className = 'text-sm text-gray-500 mt-1';
-        pageviewDiv.innerHTML = `Current pageview: <b>${item.DecemberPageview.toLocaleString()}</b>/<b>${item.pageview.toLocaleString()}</b>`;
+        pageviewDiv.innerHTML = `Current pageview: <b>${item.NovemberPageview.toLocaleString()}</b>/<b>${item.pageview.toLocaleString()}</b>`;
         progressContentWrapper.appendChild(pageviewDiv);
 
         const messageBubble = document.createElement('div');
@@ -349,8 +349,8 @@
 
     const progressContainer = document.getElementById('progress-container');
 
-    // Sort data based on December percentage in descending order
-    data.sort((a, b) => (b.DecemberPageview / b.pageview) - (a.DecemberPageview / a.pageview));
+    // Sort data based on November percentage in descending order
+    data.sort((a, b) => (b.NovemberPageview / b.pageview) - (a.NovemberPageview / a.pageview));
 
     // Render the progress bars
     data.forEach(renderProgressBar);
